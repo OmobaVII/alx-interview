@@ -26,8 +26,6 @@ def validUTF8(data):
                 number_bytes = 2
             elif (byte >> 3) == 0b11110:
                 number_bytes = 3
-            elif isinstance(byte, int):
-                pass
             else:
                 return False
         else:
