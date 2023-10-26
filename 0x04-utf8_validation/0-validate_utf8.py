@@ -16,12 +16,7 @@ def validUTF8(data):
 
     for byte in data:
         # checks if it is a continuation byte
-        if number_bytes != 0:
-            if (byte >> 6) == 0b10:
-                number_bytes -= 1
-            else:
-                return False
-        else:
+        if number_bytes == 0:
             # checks the start of a character
             if (byte >> 7) == 0:
                 number_bytes = 0
@@ -31,6 +26,12 @@ def validUTF8(data):
                 number_bytes = 2
             elif (byte >> 3) == 0b11110:
                 number_bytes = 3
+            else:
+                return False
+        else:
+            # checks if it is a continuation byte
+            if (byte >> 6) == 0b10:
+                number_bytes -= 1
             else:
                 return False
 
