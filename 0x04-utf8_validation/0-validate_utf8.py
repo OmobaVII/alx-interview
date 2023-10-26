@@ -18,22 +18,21 @@ def validUTF8(data):
         # checks if it is a continuation byte
         if number_bytes == 0:
             # checks the start of a character
-            if (byte >> 7) == 0:
-                number_bytes = 0
-            elif (byte >> 5) == 0b110:
+            if (byte >> 5) == 0b110:
                 number_bytes = 1
-            elif (byte >> 4) == 0b1110:
+            if (byte >> 4) == 0b1110:
                 number_bytes = 2
-            elif (byte >> 3) == 0b11110:
+            if (byte >> 3) == 0b11110:
                 number_bytes = 3
-            else:
+            if (byte >> 7) == 0b10:
                 return False
         else:
             # checks if it is a continuation byte
             if (byte >> 6) == 0b10:
-                number_bytes -= 1
-            else:
-                return False
+                False
+            number_bytes -= 1
+    if number_bytes != 0:
+        return False
 
     # if there are unmatched continuation bytes or missing bytes, return False
     return number_bytes == 0
