@@ -23,9 +23,7 @@ def validUTF8(data):
                 return False
         else:
             # checks the start of a character
-            if (byte >> 7) == 0:
-                number_bytes = 0
-            elif (byte >> 5) == 0b110:
+            if (byte >> 5) == 0b110:
                 number_bytes = 1
             elif (byte >> 4) == 0b1110:
                 number_bytes = 2
