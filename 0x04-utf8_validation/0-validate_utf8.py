@@ -20,11 +20,13 @@ def validUTF8(data):
             # checks the start of a character
             if (byte >> 5) == 0b110:
                 number_bytes = 1
-            if (byte >> 4) == 0b1110:
+            elif (byte >> 4) == 0b1110:
                 number_bytes = 2
-            if (byte >> 3) == 0b11110:
+            elif (byte >> 3) == 0b11110:
                 number_bytes = 3
-            if (byte >> 7) == 0b10:
+            elif (byte >> 7) == 0:
+                number_bytes = 0
+            else:
                 return False
         else:
             # checks if it is a continuation byte
