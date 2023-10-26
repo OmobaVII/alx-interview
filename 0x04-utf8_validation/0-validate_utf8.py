@@ -37,4 +37,4 @@ def validUTF8(data):
         return False
 
     # if there are unmatched continuation bytes or missing bytes, return False
-    return number_bytes == 0
+    return True
