@@ -17,13 +17,15 @@ def validUTF8(data):
     for byte in data:
         # checks if it is a continuation byte
         if number_bytes > 0:
-            if (byte >> 6) == 0b10:
+            if (byte >> 6) != 0b10:
                 number_bytes -= 1
             else:
                 return False
         else:
             # checks the start of a character
-            if (byte >> 5) == 0b110:
+            if (byte >> 7) == 0:
+                number_bytes = 0
+            elif (byte >> 5) == 0b110:
                 number_bytes = 1
             elif (byte >> 4) == 0b1110:
                 number_bytes = 2
