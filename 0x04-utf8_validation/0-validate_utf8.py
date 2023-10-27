@@ -26,15 +26,15 @@ def validUTF8(data):
                 number_bytes = 2
             elif (byte >> 3) == 0b11110:
                 number_bytes = 3
-            else:
-                return False
+
         else:
             # checks if it is a continuation byte
-            if (byte >> 6) != 0b10:
+            if (byte >> 6) == 0b10:
+                number_bytes -= 1
+            else:
                 return False
-            number_bytes -= 1
     if number_bytes != 0:
         return False
 
     # if there are unmatched continuation bytes or missing bytes, return False
-    return True
+    return number_bytes == 0
