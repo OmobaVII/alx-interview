@@ -4,6 +4,7 @@
     amount.
 """
 
+
 def makeChange(coins, total):
     """ returns the fewest number of coins needed """
     if total <= 0:
@@ -22,7 +23,7 @@ def makeChange(coins, total):
             # Increment the used coins and update the balance
             used_coins += int(balance / coin)
             balance = balance % coin
-    
+
     # Checks if the coins could successfully meet the total
     if balance != 0:
         used_coins = -1
