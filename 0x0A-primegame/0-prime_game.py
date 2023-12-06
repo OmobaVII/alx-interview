@@ -4,13 +4,14 @@
 """
 
 
-def rm_multiples(l, x):
+def rm_multiples(lists, x):
     """ removes multiples of a prime number """
-    for a in range(2, len(l)):
+    for a in range(2, len(lists)):
         try:
-            l[a * x] = 0
+            lists[a * x] = 0
         except (ValueError, IndexError):
             break
+
 
 def isWinner(x, nums):
     """ checks and returns the winner """
